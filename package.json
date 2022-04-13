@@ -1,0 +1,52 @@
+{
+	"name": "@webxspace/webxui",
+	"version": "0.0.1",
+	"files": [
+		"dist"
+	],
+	"main": "./dist/index.umd.js",
+	"module": "./dist/index.es.js",
+	"types": "./dist/index.d.ts",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build && vue-tsc --emitDeclarationOnly ",
+		"server": "http-server ./dist -p 8000"
+	},
+	"dependencies": {
+		"@soerenmartius/vue3-clipboard": "^0.1.2",
+		"@types/debounce": "^1.2.1",
+		"animate.css": "^4.1.1",
+		"buffer": "^6.0.3",
+		"debounce": "^1.2.1",
+		"ethers": "^5.5.4",
+		"qrcode.vue": "^3.3.3",
+		"rollup-plugin-styles": "^4.0.0",
+		"vue": "^3.2.26",
+		"vue-router": "^4.0.12"
+	},
+	"devDependencies": {
+		"@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+		"@esbuild-plugins/node-modules-polyfill": "^0.1.4",
+		"@originjs/vite-plugin-commonjs": "^1.0.3",
+		"@rollup/plugin-replace": "^3.1.0",
+		"@types/chai": "^4.2.16",
+		"@types/chai-as-promised": "^7.1.4",
+		"@types/mocha": "^8.2.2",
+		"@types/node": "^16.11.7",
+		"@vitejs/plugin-vue": "^1.6.1",
+		"@vue/compiler-sfc": "^3.2.6",
+		"chai": "^4.2.0",
+		"chai-as-promised": "^7.1.1",
+		"eslint": "^7.32.0",
+		"eslint-plugin-vue": "^7.18.0",
+		"fast-glob": "^3.2.11",
+		"http-server": "^14.1.0",
+		"mocha": "^8.3.2",
+		"prettier": "^2.4.1",
+		"ts-node": "^10.2.1",
+		"typescript": "^4.3.2",
+		"vite": "^2.6.14",
+		"vite-plugin-svg-icons": "^2.0.1",
+		"vue-tsc": "^0.29.5"
+	}
+}

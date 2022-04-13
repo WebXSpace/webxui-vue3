@@ -1,0 +1,113 @@
+body {
+	font-family: 'PingFang SC', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue',
+		Helvetica, Arial, 'Hiragino Sans GB', 'Source Han Sans', 'Noto Sans CJK Sc',
+		'Microsoft YaHei', 'Microsoft Jhenghei', sans-serif;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-font-smoothing: subpixel-antialiased;
+	margin: 0px;
+	padding: 0px;
+	scroll-behavior: smooth;
+	overflow: hidden;
+}
+
+::-webkit-scrollbar {
+	/* background: var(--webx-shadow-color); */
+	position: absolute;
+	width: 6px;
+	height: 6px;
+}
+
+:hover::-webkit-scrollbar-thumb {
+	background: var(--webx-border-color);
+	border-radius: 4px;
+	width: 6px;
+	height: 6px;
+}
+
+a:focus,
+input:focus,
+p:focus,
+div:focus {
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-user-modify: read-write-plaintext-only;
+}
+
+:root {
+	--webx-padding-size: 12px;
+	--webx-padding-size-negative: -12px;
+	--webx-shadow-radius: 40px;
+	--webx-border-width: 1px;
+	--webx-border-secondary-width: 1.5px;
+	--webx-border-accent-width: 4px;
+	--webx-focus-shadow-width: 2px;
+	--webx-border-radius: 8px;
+	--webx-border: solid var(--webx-border-width) var(--webx-border-color);
+	--animate-duration: 0.2s;
+	--webx-danger: #f32839;
+	--webx-success: #00cccc;
+	--webx-app-frame-sysbar-height: 1.8em;
+	--webx-input-mini-width: 300px;
+	--webx-scale: 0.95;
+	--webx-focus-border: #00cccc;
+	--webx-focus-background: #00cccc1f;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--webx-shadow-color: #cfcfcf63;
+		--webx-border-color: #6c6c6c63;
+		--webx-blur-background: #ffffff00;
+		--webx-primary: #202020;
+		--webx-secondary: #818181;
+		--webx-accent: #00cccc;
+		--webx-background: #ffffff;
+		--webx-secondary-background: #f5f5f5d8;
+		--webx-popupbackground: rgb(255, 255, 255);
+		--webx-accent-background: rgb(255, 255, 255);
+		--webx-dragover-background: #00cccce5;
+	}
+}
+
+/* dark mode */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--webx-shadow-color: rgba(22, 22, 22, 0.438);
+		--webx-border-color: rgba(100, 100, 100, 0.438);
+		--webx-blur-background: rgba(83, 83, 83, 0.7);
+		--webx-primary: #c5c5c5;
+		--webx-secondary: #888888;
+		--webx-accent: #00cccc;
+		--webx-background: #24292e;
+		--webx-secondary-background: rgb(31, 36, 40);
+		--webx-accent-background: rgb(31, 36, 40);
+		--webx-dragover-background: #00cccc63;
+	}
+}
+
+.webx-slide-enter-active,
+.webx-slide-leave-active {
+	transition: all var(--animate-duration) ease-in-out;
+}
+
+.webx-slide-enter-from {
+	opacity: 0.6;
+	transform: translateX(100%);
+}
+.webx-slide-leave-to {
+	opacity: 0.6;
+	transform: translateX(100%);
+}
+
+.webx-slide-left-enter-active,
+.webx-slide-left-leave-active {
+	transition: all var(--animate-duration) ease-in-out;
+}
+
+.webx-slide-left-enter-from {
+	opacity: 0.6;
+	transform: translateX(-100%);
+}
+.webx-slide-left-leave-to {
+	opacity: 0.6;
+	transform: translateX(-100%);
+}
