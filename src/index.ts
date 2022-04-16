@@ -17,6 +17,8 @@ export * from './form';
 export * from './asyncref';
 export * from './notification';
 export * from './loading';
+export * from './i18n';
+
 import { VueClipboard } from '@soerenmartius/vue3-clipboard';
 
 export interface Operation {}
