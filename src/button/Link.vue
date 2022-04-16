@@ -83,8 +83,10 @@ export default defineComponent({
 	border-bottom: solid var(--webx-border-width) var(--webx-border-color);
 }
 .link-icon {
-	width: 1em;
-	height: 1em;
+	min-width: 1em;
+	min-height: 1em;
+	max-width: 1em;
+	max-height: 1em;
 	margin-right: 0.5em;
 }
 </style>
