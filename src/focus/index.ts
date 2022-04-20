@@ -125,11 +125,14 @@ export function focus(app: App) {
 			htmlElement.addEventListener('focusout', focusout);
 			htmlElement.addEventListener('mouseover', mouseover);
 			htmlElement.addEventListener('mouseleave', mouseleave);
-			htmlElement.addEventListener('click', () => {
+			htmlElement.addEventListener('click', event => {
 				if (focused != el && focused) {
 					focused.dispatchEvent(new FocusEvent('focusout'));
 				}
+
 				focused = el;
+
+				focusin(event);
 			});
 
 			focusables = focusables.filter(it => {

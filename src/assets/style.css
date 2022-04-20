@@ -32,6 +32,10 @@ div:focus {
 	-webkit-user-modify: read-write-plaintext-only;
 }
 
+:focus {
+	outline: none;
+}
+
 :root {
 	--webx-padding-size: 12px;
 	--webx-padding-size-negative: -12px;

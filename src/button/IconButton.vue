@@ -1,16 +1,9 @@
 <template>
-	<icon
-		:name="name"
-		:url="url"
-		:color="color"
-		class="icon-button"
-		@mouseover="mouseover"
-		@mouseleave="mouseleave"
-	></icon>
+	<icon :name="name" :url="url" :color="color" class="icon-button" v-focus="'icon-button'"></icon>
 </template>
 
 <script lang="ts">
-import { computed } from '@vue/reactivity';
+import { computed } from 'vue';
 import { defineComponent, ref, toRefs } from 'vue';
 import { Icon } from '../icon';
 export default defineComponent({
@@ -81,8 +74,20 @@ export default defineComponent({
 	align-items: center;
 	justify-content: center;
 	align-self: center;
-	border: solid var(--webx-border-width) v-bind(borderColor);
+	border: solid var(--webx-border-width) v-bind(secondary);
 	padding: 0.2em;
 	border-radius: var(--webx-border-radius);
+}
+
+.icon-button-hover {
+	border: solid var(--webx-border-width) v-bind(primary);
+}
+
+.icon-button-focus {
+	border: solid var(--webx-border-width) v-bind(secondary);
+}
+
+.icon-button-unfocus {
+	border: solid var(--webx-border-width) v-bind(secondary);
 }
 </style>
