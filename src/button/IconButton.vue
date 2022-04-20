@@ -1,5 +1,11 @@
 <template>
-	<icon :name="name" :url="url" :color="color" class="icon-button" v-focus="'icon-button'"></icon>
+	<icon
+		:name="name"
+		:url="url"
+		:color="primary"
+		class="icon-button"
+		v-focus="'icon-button'"
+	></icon>
 </template>
 
 <script lang="ts">
