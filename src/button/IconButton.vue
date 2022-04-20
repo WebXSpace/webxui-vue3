@@ -84,7 +84,7 @@ export default defineComponent({
 }
 
 .icon-button-focus {
-	border: solid var(--webx-border-width) v-bind(secondary);
+	border: solid var(--webx-border-width) var(--webx-accent);
 }
 
 .icon-button-unfocus {
