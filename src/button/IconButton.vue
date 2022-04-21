@@ -2,14 +2,14 @@
 	<icon
 		:name="name"
 		:url="url"
-		:color="primary"
+		:color="color"
 		class="icon-button"
-		v-focus="'icon-button'"
+		v-focus="{ status: onFocusChanged }"
 	></icon>
 </template>
 
 <script lang="ts">
-import { computed } from 'vue';
+import { computed, watch, watchEffect } from 'vue';
 import { defineComponent, ref, toRefs } from 'vue';
 import { Icon } from '../icon';
 export default defineComponent({
@@ -37,33 +37,56 @@ export default defineComponent({
 			type: Boolean,
 			default: true,
 		},
+		disabled: {
+			type: String,
+			required: false,
+		},
 	},
 	setup(props) {
-		const { primary, secondary, border } = toRefs(props);
+		const { primary, secondary, border, disabled } = toRefs(props);
 
 		const color = ref(secondary.value);
 
-		const mouseover = () => {
-			color.value = primary.value;
-		};
+		const focused = ref(false);
 
-		const mouseleave = () => {
-			color.value = secondary.value;
-		};
+		const borderColor = ref('transparent');
 
-		const borderColor = computed(() => {
-			if (!border.value) {
-				return 'transparent';
+		watchEffect(() => {
+			if (disabled.value) {
+				color.value = disabled.value;
+			} else {
+				if (focused.value) {
+					color.value = primary.value;
+				} else {
+					color.value = secondary.value;
+				}
 			}
 
-			return color.value;
+			if (border.value) {
+				if (disabled.value) {
+					borderColor.value = disabled.value;
+				} else if (focused.value) {
+					borderColor.value = primary.value;
+				} else {
+					borderColor.value = secondary.value;
+				}
+			} else {
+				borderColor.value = 'transparent';
+			}
 		});
 
+		const onFocusChanged = (status: string) => {
+			if (status == 'unfocus') {
+				focused.value = false;
+			} else {
+				focused.value = true;
+			}
+		};
+
 		return {
+			onFocusChanged,
 			borderColor,
 			color,
-			mouseover,
-			mouseleave,
 		};
 	},
 });
@@ -80,20 +103,8 @@ export default defineComponent({
 	align-items: center;
 	justify-content: center;
 	align-self: center;
-	border: solid var(--webx-border-width) v-bind(secondary);
+	border: solid var(--webx-border-width) v-bind(borderColor);
 	padding: 0.2em;
 	border-radius: var(--webx-border-radius);
-}
-
-.icon-button-hover {
-	border: solid var(--webx-border-width) v-bind(primary);
-}
-
-.icon-button-focus {
-	border: solid var(--webx-border-width) var(--webx-accent);
-}
-
-.icon-button-unfocus {
-	border: solid var(--webx-border-width) v-bind(secondary);
 }
 </style>

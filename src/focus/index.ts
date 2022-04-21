@@ -1,4 +1,4 @@
-import { App, computed, DirectiveBinding, onUnmounted, onUpdated, VNode } from 'vue';
+import { App, computed, DirectiveBinding, onUnmounted, onUpdated, Ref, VNode } from 'vue';
 
 let focusables: HTMLElement[] = [];
 
@@ -22,30 +22,52 @@ window.addEventListener('keyup', (event: KeyboardEvent) => {
 	}
 });
 
+export type FocusStatus = 'unfocus' | 'focus' | 'hover';
+
+export interface FocusBinding {
+	name?: string;
+	status: (status: FocusStatus) => void;
+}
+
 export function focus(app: App) {
 	app.directive('focus', {
-		mounted: (el: HTMLElement, binding: DirectiveBinding<string | undefined>, vnode: VNode) => {
+		mounted: (
+			el: HTMLElement,
+			binding: DirectiveBinding<FocusBinding | string | undefined>,
+			vnode: VNode,
+		) => {
+			let name: string | undefined;
+
+			let status: (status: FocusStatus) => void | undefined;
+
+			if (typeof binding.value == 'string') {
+				name = binding.value;
+			} else if (typeof binding.value == 'object') {
+				name = binding.value.name;
+				status = binding.value.status;
+			}
+
 			const htmlElement = el as HTMLElement;
 
 			const unfocusClass = computed(() => {
-				if (!binding.value) {
+				if (!name) {
 					return '';
 				}
-				return `${binding.value}-unfocus`;
+				return `${name}-unfocus`;
 			});
 
 			const hoverClass = computed(() => {
-				if (!binding.value) {
+				if (!name) {
 					return '';
 				}
-				return `${binding.value}-hover`;
+				return `${name}-hover`;
 			});
 
 			const focusClass = computed(() => {
-				if (!binding.value) {
+				if (!name) {
 					return '';
 				}
-				return `${binding.value}-focus`;
+				return `${name}-focus`;
 			});
 
 			if (unfocusClass.value && !htmlElement.classList.contains(unfocusClass.value)) {
@@ -64,6 +86,12 @@ export function focus(app: App) {
 				if (hoverClass.value) {
 					htmlElement.classList.add(hoverClass.value);
 				}
+
+				if (status) {
+					status('hover');
+				}
+
+				event.stopPropagation();
 			};
 
 			const mouseleave = (event: Event) => {
@@ -78,6 +106,12 @@ export function focus(app: App) {
 				if (unfocusClass.value) {
 					htmlElement.classList.add(unfocusClass.value);
 				}
+
+				if (status) {
+					status('unfocus');
+				}
+
+				event.stopPropagation();
 			};
 
 			const focusin = (event: Event) => {
@@ -94,6 +128,12 @@ export function focus(app: App) {
 				}
 
 				focused = el;
+
+				if (status) {
+					status('focus');
+				}
+
+				event.stopPropagation();
 			};
 
 			const focusout = (event: Event) => {
@@ -112,6 +152,12 @@ export function focus(app: App) {
 				if (focused == el) {
 					focused = undefined;
 				}
+
+				if (status) {
+					status('unfocus');
+				}
+
+				event.stopPropagation();
 			};
 
 			const inputs = htmlElement.querySelectorAll('input');
@@ -126,13 +172,8 @@ export function focus(app: App) {
 			htmlElement.addEventListener('mouseover', mouseover);
 			htmlElement.addEventListener('mouseleave', mouseleave);
 			htmlElement.addEventListener('click', event => {
-				if (focused != el && focused) {
-					focused.dispatchEvent(new FocusEvent('focusout'));
-				}
-
-				focused = el;
-
 				focusin(event);
+				event.stopPropagation();
 			});
 
 			focusables = focusables.filter(it => {

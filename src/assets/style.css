@@ -63,6 +63,7 @@ div:focus {
 		--webx-blur-background: #ffffff00;
 		--webx-primary: #202020;
 		--webx-secondary: #818181;
+		--webx-disabled: #6c6c6c34;
 		--webx-accent: #00cccc;
 		--webx-background: #ffffff;
 		--webx-secondary-background: #f5f5f5d8;
@@ -80,6 +81,7 @@ div:focus {
 		--webx-blur-background: rgba(83, 83, 83, 0.7);
 		--webx-primary: #c5c5c5;
 		--webx-secondary: #888888;
+		--webx-disabled: rgba(100, 100, 100, 0.169);
 		--webx-accent: #00cccc;
 		--webx-background: #24292e;
 		--webx-secondary-background: rgb(31, 36, 40);
