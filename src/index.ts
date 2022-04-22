@@ -1,5 +1,5 @@
 import { App } from 'vue';
-import { focus } from './focus';
+import { installFocusDirective } from './focus';
 
 import './assets/style.css';
 
@@ -24,6 +24,6 @@ import { VueClipboard } from '@soerenmartius/vue3-clipboard';
 export interface Operation {}
 
 export function webxui(app: App, operation?: Operation) {
-	app.use(focus);
+	app.use(installFocusDirective);
 	app.use(VueClipboard);
 }

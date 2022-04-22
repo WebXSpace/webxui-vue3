@@ -2,7 +2,7 @@
 	<div
 		class="tree-menu"
 		:class="classes"
-		v-focus="'tree-menu'"
+		v-focus:tree-menu
 		ref="el"
 		@contextmenu.self="onPopup"
 		@keydown.arrow-up="arrowUp"

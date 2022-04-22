@@ -3,7 +3,7 @@
 		v-model="(input as string)"
 		:placeholder="placeholder"
 		class="form-text-area"
-		v-focus="'form-text-area'"
+		v-focus:form-text-area
 	/>
 </template>
 

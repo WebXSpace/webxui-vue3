@@ -4,7 +4,7 @@
 		:url="url"
 		:color="color"
 		class="icon-button"
-		v-focus="{ status: onFocusChanged }"
+		v-focus="onFocusChanged"
 	></icon>
 </template>
 

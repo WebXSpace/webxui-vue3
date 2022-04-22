@@ -1,5 +1,5 @@
 <template>
-	<div class="search-bar" v-focus="'search-bar'">
+	<div class="search-bar" v-focus:search-bar>
 		<input
 			v-model="input"
 			class="search-input"
