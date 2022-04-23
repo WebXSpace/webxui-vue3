@@ -1,6 +1,6 @@
 <template>
 	<div class="app-frame">
-		<teleport to="body" v-if="!isMacOS">
+		<teleport to="body" v-if="showing">
 			<div class="app-frame-sysbar">
 				<div class="app-frame-sysbar-buttons">
 					<div
@@ -25,6 +25,7 @@
 </template>
 
 <script lang="ts">
+import { computed } from '@vue/reactivity';
 import { defineComponent, inject } from 'vue';
 import { Icon } from '../icon';
 import { useAppProvider } from './app';
@@ -51,8 +52,8 @@ export default defineComponent({
 			close,
 			maximize,
 			minimize,
-			isMacOS: appProvider.isMacOS,
-			resizable: appProvider.resizable,
+			showing: appProvider.showing,
+			resizable: appProvider?.resizable ?? false,
 		};
 	},
 });

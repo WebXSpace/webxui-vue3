@@ -7,6 +7,8 @@ export interface IAppProvider {
 
 	readonly isMacOS: Ref<boolean>;
 
+	readonly showing: Ref<boolean>;
+
 	minimize(): Promise<void>;
 
 	maximizeOrNormalmize(): Promise<void>;

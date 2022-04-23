@@ -141,8 +141,6 @@ export default defineComponent({
 
 .dialog-content {
 	background: var(--webx-background);
-	max-width: 60%;
-	max-height: 80%;
 	border-radius: var(--webx-border-radius);
 	box-shadow: 0 0 20px var(--webx-shadow-color);
 	border-top: solid var(--webx-border-radius) var(--webx-accent);
@@ -159,7 +157,8 @@ export default defineComponent({
 	}
 
 	.dialog-content {
-		min-width: calc(100% - 2 * var(--webx-border-secondary-width));
+		min-width: calc(100% - 2 * var(--webx-border-width));
+		max-width: calc(100% - 2 * var(--webx-border-width));
 		border-radius: var(--webx-border-radius) var(--webx-border-radius) 0 0;
 	}
 }
