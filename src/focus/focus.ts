@@ -256,8 +256,6 @@ watch(_focusedELement, (newElement, oldElement) => {
 	if (newElement) {
 		const newFocusable = _focusables.get(newElement);
 
-		console.log('old', newElement, newFocusable);
-
 		if (newFocusable) {
 			newFocusable.focus();
 		}
